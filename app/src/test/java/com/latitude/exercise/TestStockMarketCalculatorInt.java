@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class StockMarketCalculatorIntTest {
+public class TestStockMarketCalculatorInt {
 
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -15,7 +15,7 @@ public class StockMarketCalculatorIntTest {
 	@Test
 	public void testCalculateBestProfit() throws Exception {
 		int[] stockPrices = {10, 7, 5, 8, 11, 9};
-		int profit = StockMarketCalculatorInt.calculateBestProfit(stockPrices);
+		int profit = StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 		assertEquals(6, profit);
 	}
 
@@ -57,7 +57,7 @@ public class StockMarketCalculatorIntTest {
 				 331, 332, 333, 334, 335, 336, 337, 338, 339, 340,
 				 341, 342, 343, 344, 345, 346, 347, 348, 349, 350,
 				 351, 352, 353, 354, 355, 356, 357, 358, 359, 360};
-		int profit = StockMarketCalculatorInt.calculateBestProfit(stockPrices);
+		int profit = StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 		assertEquals(359, profit);
 	}
 
@@ -66,7 +66,7 @@ public class StockMarketCalculatorIntTest {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Null of empty data");
 		int[] stockPrices = null;
-		StockMarketCalculatorInt.calculateBestProfit(stockPrices);
+		StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 	}
 
 	@Test
@@ -74,7 +74,7 @@ public class StockMarketCalculatorIntTest {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Null of empty data");
 		int[] stockPrices = {};
-		StockMarketCalculatorInt.calculateBestProfit(stockPrices);
+		StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class StockMarketCalculatorIntTest {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Negative value");
 		int[] stockPrices = {1, 2, -3};
-		StockMarketCalculatorInt.calculateBestProfit(stockPrices);
+		StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 	}
 
 	@Test
@@ -126,13 +126,13 @@ public class StockMarketCalculatorIntTest {
 							 341, 342, 343, 344, 345, 346, 347, 348, 349, 350,
 							 351, 352, 353, 354, 355, 356, 357, 358, 359, 360,
 							 361};
-		StockMarketCalculatorInt.calculateBestProfit(stockPrices);
+		StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 	}
 
 	@Test
 	public void testCalculateMinimumLoss() throws Exception {
 		int[] stockPrices = {100, 90, 85, 70, 50, 20};
-		int profit = StockMarketCalculatorInt.calculateBestProfit(stockPrices);
+		int profit = StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 		assertEquals(-5, profit);
 	}
 

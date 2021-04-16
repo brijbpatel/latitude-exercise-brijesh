@@ -18,13 +18,14 @@ public class StockMarketCalculatorBigDecimal {
 	 * @param stockPrices[] Stock prices during the day in array
 	 * @throws InputValidationExcetion when data input validation fails
 	 */
-	public static BigDecimal calculateBestProfit(BigDecimal[] stockPrices)
+	public static BigDecimal calculateMaxProfit(BigDecimal[] stockPrices)
 			throws InputValidationExcetion {
 		validateStockPrices(stockPrices);
 
-		BigDecimal profit = new BigDecimal(Integer.MIN_VALUE);	// start with lowest negative number to
-																// calculate minimum loss if stock prices
-																// only reduces from trade opening time.
+		// start with lowest negative number to
+		// calculate minimum loss if stock prices
+		// only reduces from trade opening time.
+		BigDecimal profit = new BigDecimal(Integer.MIN_VALUE).setScale(roundingScale, RoundingMode.HALF_UP);
 		for (int i = 0; i < stockPrices.length - 1; i++) {
 			for (int j = i + 1; j < stockPrices.length; j++) {
 				BigDecimal diff = stockPrices[j].subtract(stockPrices[i]);

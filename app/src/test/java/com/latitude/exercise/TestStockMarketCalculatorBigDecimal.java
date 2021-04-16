@@ -9,7 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class StockMarketCalculatorBigDecimalTest {
+public class TestStockMarketCalculatorBigDecimal {
 
 	@SuppressWarnings("deprecation")
 	@Rule
@@ -23,7 +23,7 @@ public class StockMarketCalculatorBigDecimalTest {
 									new BigDecimal(8.88),
 									new BigDecimal(11.11),
 									new BigDecimal(9.99)};
-		BigDecimal profit = StockMarketCalculatorBigDecimal.calculateBestProfit(stockPrices);
+		BigDecimal profit = StockMarketCalculatorBigDecimal.calculateMaxProfit(stockPrices);
 		assertEquals(new BigDecimal(5.56).setScale(2, RoundingMode.HALF_UP), profit);
 	}
 
@@ -65,7 +65,7 @@ public class StockMarketCalculatorBigDecimalTest {
 				new BigDecimal(331), new BigDecimal(332), new BigDecimal(333), new BigDecimal(334), new BigDecimal(335), new BigDecimal(336), new BigDecimal(337), new BigDecimal(338), new BigDecimal(339), new BigDecimal(340),
 				new BigDecimal(341), new BigDecimal(342), new BigDecimal(343), new BigDecimal(344), new BigDecimal(345), new BigDecimal(346), new BigDecimal(347), new BigDecimal(348), new BigDecimal(349), new BigDecimal(350),
 				new BigDecimal(351), new BigDecimal(352), new BigDecimal(353), new BigDecimal(354), new BigDecimal(355), new BigDecimal(356), new BigDecimal(357), new BigDecimal(358), new BigDecimal(359), new BigDecimal(360)};
-		BigDecimal profit = StockMarketCalculatorBigDecimal.calculateBestProfit(stockPrices);
+		BigDecimal profit = StockMarketCalculatorBigDecimal.calculateMaxProfit(stockPrices);
 		assertEquals(new BigDecimal(359).setScale(2, RoundingMode.HALF_UP), profit);
 	}
 
@@ -74,7 +74,7 @@ public class StockMarketCalculatorBigDecimalTest {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Null of empty data");
 		int[] stockPrices = null;
-		StockMarketCalculatorInt.calculateBestProfit(stockPrices);
+		StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class StockMarketCalculatorBigDecimalTest {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Null of empty data");
 		int[] stockPrices = {};
-		StockMarketCalculatorInt.calculateBestProfit(stockPrices);
+		StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 	}
 
 	@Test
@@ -90,7 +90,7 @@ public class StockMarketCalculatorBigDecimalTest {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Negative value");
 		BigDecimal[] stockPrices = {new BigDecimal(1.1), new BigDecimal(2.2), new BigDecimal(-3.3)};
-		StockMarketCalculatorBigDecimal.calculateBestProfit(stockPrices);
+		StockMarketCalculatorBigDecimal.calculateMaxProfit(stockPrices);
 	}
 
 	@Test
@@ -134,13 +134,13 @@ public class StockMarketCalculatorBigDecimalTest {
 				new BigDecimal(341), new BigDecimal(342), new BigDecimal(343), new BigDecimal(344), new BigDecimal(345), new BigDecimal(346), new BigDecimal(347), new BigDecimal(348), new BigDecimal(349), new BigDecimal(350),
 				new BigDecimal(351), new BigDecimal(352), new BigDecimal(353), new BigDecimal(354), new BigDecimal(355), new BigDecimal(356), new BigDecimal(357), new BigDecimal(358), new BigDecimal(359), new BigDecimal(360),
 				new BigDecimal(361)};
-		StockMarketCalculatorBigDecimal.calculateBestProfit(stockPrices);
+		StockMarketCalculatorBigDecimal.calculateMaxProfit(stockPrices);
 	}
 
 	@Test
 	public void testCalculateMinimumLoss() throws Exception {
 		BigDecimal[] stockPrices = {new BigDecimal(100.0), new BigDecimal(90.90), new BigDecimal(85.85), new BigDecimal(70.70), new BigDecimal(50.50), new BigDecimal(20.20)};
-		BigDecimal profit = StockMarketCalculatorBigDecimal.calculateBestProfit(stockPrices);
+		BigDecimal profit = StockMarketCalculatorBigDecimal.calculateMaxProfit(stockPrices);
 		assertEquals(new BigDecimal(-5.05).setScale(2, RoundingMode.HALF_UP), profit);
 	}
 

@@ -16,7 +16,7 @@ public class StockMarketCalculatorInt {
 	 * @param stockPrices[] Stock prices during the day in array
 	 * @throws InputValidationExcetion when data input validation fails
 	 */
-	public static int calculateBestProfit(int[] stockPrices)
+	public static int calculateMaxProfit(int[] stockPrices)
 			throws InputValidationExcetion {
 		validateStockPrices(stockPrices);
 
