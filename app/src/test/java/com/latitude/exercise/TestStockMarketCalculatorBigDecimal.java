@@ -29,9 +29,9 @@ public class TestStockMarketCalculatorBigDecimal {
 
 	@Test
 	public void testCalculateMaxProfit2Indices() throws Exception {
-		int[] stockPrices = {10, 11};
-		int profit = StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
-		assertEquals(1, profit);
+		BigDecimal[] stockPrices = {new BigDecimal(10), new BigDecimal(11)};
+		BigDecimal profit = StockMarketCalculatorBigDecimal.calculateMaxProfit(stockPrices);
+		assertEquals(new BigDecimal(1.00).setScale(2, RoundingMode.HALF_UP), profit);
 	}
 
 	@Test
