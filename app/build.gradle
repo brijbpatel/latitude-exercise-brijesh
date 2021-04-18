@@ -28,3 +28,9 @@ application {
     // Define the main class for the application.
     mainClass = 'com.latitude.exercise.App'
 }
+
+test {
+    afterTest { desc, result -> 
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
+}

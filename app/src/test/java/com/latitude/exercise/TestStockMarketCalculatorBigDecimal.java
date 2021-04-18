@@ -16,7 +16,7 @@ public class TestStockMarketCalculatorBigDecimal {
 	public ExpectedException exceptionRule = ExpectedException.none();
 	
 	@Test
-	public void testCalculateBestProfit() throws Exception {
+	public void testCalculateMaxProfit() throws Exception {
 		BigDecimal[] stockPrices = {new BigDecimal(10.0),
 									new BigDecimal(7.77),
 									new BigDecimal(5.55),
@@ -28,7 +28,14 @@ public class TestStockMarketCalculatorBigDecimal {
 	}
 
 	@Test
-	public void testCalculateBest360Indices() throws Exception {
+	public void testCalculateMaxProfit2Indices() throws Exception {
+		int[] stockPrices = {10, 11};
+		int profit = StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
+		assertEquals(1, profit);
+	}
+
+	@Test
+	public void testCalculateMaxProfit360Indices() throws Exception {
 		BigDecimal[] stockPrices = {new BigDecimal(1), new BigDecimal(2), new BigDecimal(3), new BigDecimal(4), new BigDecimal(5), new BigDecimal(6), new BigDecimal(7), new BigDecimal(8), new BigDecimal(9), new BigDecimal(10),
 				new BigDecimal(11), new BigDecimal(12), new BigDecimal(13), new BigDecimal(14), new BigDecimal(15), new BigDecimal(16), new BigDecimal(17), new BigDecimal(18), new BigDecimal(19), new BigDecimal(20),
 				new BigDecimal(21), new BigDecimal(22), new BigDecimal(23), new BigDecimal(24), new BigDecimal(25), new BigDecimal(26), new BigDecimal(27), new BigDecimal(28), new BigDecimal(29), new BigDecimal(30),
@@ -70,7 +77,7 @@ public class TestStockMarketCalculatorBigDecimal {
 	}
 
 	@Test
-	public void testCalculateBestProfitNull() throws Exception {
+	public void testCalculateMaxProfitNullInput() throws Exception {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Null of empty data");
 		int[] stockPrices = null;
@@ -78,7 +85,7 @@ public class TestStockMarketCalculatorBigDecimal {
 	}
 
 	@Test
-	public void testCalculateBestProfitEmpty() throws Exception {
+	public void testCalculateMaxProfitEmptyInput() throws Exception {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Null of empty data");
 		int[] stockPrices = {};
@@ -86,7 +93,7 @@ public class TestStockMarketCalculatorBigDecimal {
 	}
 
 	@Test
-	public void testCalculateBestProfitNegative() throws Exception {
+	public void testCalculateMaxProfitNegativeInput() throws Exception {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Negative value");
 		BigDecimal[] stockPrices = {new BigDecimal(1.1), new BigDecimal(2.2), new BigDecimal(-3.3)};
@@ -94,7 +101,15 @@ public class TestStockMarketCalculatorBigDecimal {
 	}
 
 	@Test
-	public void testCalculateBestProfitTooManyIndices() throws Exception {
+	public void testCalculateMaxProfitTooLessIndices() throws Exception {
+		exceptionRule.expect(InputValidationExcetion.class);
+		exceptionRule.expectMessage("Too less indices");
+		BigDecimal[] stockPrices = {new BigDecimal(5)};
+		StockMarketCalculatorBigDecimal.calculateMaxProfit(stockPrices);
+	}
+
+	@Test
+	public void testCalculateMaxProfitTooManyIndices() throws Exception {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Too many indices");
 		BigDecimal[] stockPrices = {new BigDecimal(1), new BigDecimal(2), new BigDecimal(3), new BigDecimal(4), new BigDecimal(5), new BigDecimal(6), new BigDecimal(7), new BigDecimal(8), new BigDecimal(9), new BigDecimal(10),
@@ -138,11 +153,10 @@ public class TestStockMarketCalculatorBigDecimal {
 	}
 
 	@Test
-	public void testCalculateMinimumLoss() throws Exception {
+	public void testCalculateMinLoss() throws Exception {
 		BigDecimal[] stockPrices = {new BigDecimal(100.0), new BigDecimal(90.90), new BigDecimal(85.85), new BigDecimal(70.70), new BigDecimal(50.50), new BigDecimal(20.20)};
 		BigDecimal profit = StockMarketCalculatorBigDecimal.calculateMaxProfit(stockPrices);
 		assertEquals(new BigDecimal(-5.05).setScale(2, RoundingMode.HALF_UP), profit);
 	}
-
 
 }

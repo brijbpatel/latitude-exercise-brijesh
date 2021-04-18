@@ -13,14 +13,21 @@ public class TestStockMarketCalculatorInt {
 	public ExpectedException exceptionRule = ExpectedException.none();
 	
 	@Test
-	public void testCalculateBestProfit() throws Exception {
+	public void testCalculateMaxProfit() throws Exception {
 		int[] stockPrices = {10, 7, 5, 8, 11, 9};
 		int profit = StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 		assertEquals(6, profit);
 	}
 
 	@Test
-	public void testCalculateBest360Indices() throws Exception {
+	public void testCalculateMaxProfit2Indices() throws Exception {
+		int[] stockPrices = {10, 11};
+		int profit = StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
+		assertEquals(1, profit);
+	}
+
+	@Test
+	public void testCalculateMaxProfit360Indices() throws Exception {
 		int[] stockPrices = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 				 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
 				 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
@@ -62,7 +69,7 @@ public class TestStockMarketCalculatorInt {
 	}
 
 	@Test
-	public void testCalculateBestProfitNull() throws Exception {
+	public void testCalculateMaxProfitNullInput() throws Exception {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Null of empty data");
 		int[] stockPrices = null;
@@ -70,7 +77,7 @@ public class TestStockMarketCalculatorInt {
 	}
 
 	@Test
-	public void testCalculateBestProfitEmpty() throws Exception {
+	public void testCalculateMaxProfitEmptyInput() throws Exception {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Null of empty data");
 		int[] stockPrices = {};
@@ -78,7 +85,7 @@ public class TestStockMarketCalculatorInt {
 	}
 
 	@Test
-	public void testCalculateBestProfitNegative() throws Exception {
+	public void testCalculateMaxProfitNegativeInput() throws Exception {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Negative value");
 		int[] stockPrices = {1, 2, -3};
@@ -86,7 +93,15 @@ public class TestStockMarketCalculatorInt {
 	}
 
 	@Test
-	public void testCalculateBestProfitTooManyIndices() throws Exception {
+	public void testCalculateMaxProfitTooLessIndices() throws Exception {
+		exceptionRule.expect(InputValidationExcetion.class);
+		exceptionRule.expectMessage("Too less indices");
+		int[] stockPrices = {5};
+		StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
+	}
+
+	@Test
+	public void testCalculateMaxProfitTooManyIndices() throws Exception {
 		exceptionRule.expect(InputValidationExcetion.class);
 		exceptionRule.expectMessage("Too many indices");
 		int[] stockPrices = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
@@ -130,11 +145,10 @@ public class TestStockMarketCalculatorInt {
 	}
 
 	@Test
-	public void testCalculateMinimumLoss() throws Exception {
+	public void testCalculateMinLoss() throws Exception {
 		int[] stockPrices = {100, 90, 85, 70, 50, 20};
 		int profit = StockMarketCalculatorInt.calculateMaxProfit(stockPrices);
 		assertEquals(-5, profit);
 	}
-
 
 }

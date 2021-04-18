@@ -46,7 +46,12 @@ public class StockMarketCalculatorInt {
 		if (stockPrices == null || stockPrices.length == 0) {
 			throw new InputValidationExcetion("Null of empty data");
 		}
-		
+
+		// Check for too less indices
+		if (stockPrices.length < 2) {
+			throw new InputValidationExcetion("Too less indices");
+		}
+
 		// Check for too many indices
 		// Assumption: stock market trading hours between 10:00 to 16:00
 		// 6 hours = 360 minutes

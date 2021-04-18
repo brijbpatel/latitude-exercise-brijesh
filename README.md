@@ -31,10 +31,12 @@ The source code resides under *app/src* folder.
 - `StockMarketCalculatorInt.java` has a method `calculateMaxProfit()`, which accepts an array of stock prices in integer data type. The method checks input data and throws an `InputValidationExcetion` with appropriate message if the input data is invalid. For valid data, it calculates and returns maximum profit in integer data type. For the ever falling prices, it also calculates and returns the minimum loss (negative number).
 - `StockMarketCalculatorBigDecimal.java` does similar to `StockMarketCalculatorInt.java` but using stock prices with 2 decimal points.
 
-*app/src/test/java/com/latitude/exercise* folder has 3 classes:
+*app/src/test/java/com/latitude/exercise* folder has 2 test classes:
 - `TestStockMarketCalculatorInt.java` tests `StockMarketCalculatorInt.java` class
 - `TestStockMarketCalculatorBigDecimal.java` tests `StockMarketCalculatorBigDecimal.java` class
-- `JunitTestSuite.java` makes a test suite of the above two test classes.
 
 ### How to compile and run/test functions
-The best thing to compile and run/test functions is using a Java IDE (e.g. Eclipse or IntelliJ IDEA). The source code has been developed using Java 8 but should also run in Java 11. Import the source code in IDE as Gradle project and IDE will automatically download required libraries (e.g. JUnit). Run `JunitTestSuite.java` as JUnit Test and it will run total 14 tests (7 + 7). All tests should pass.
+The source code has been developed using Java 8 but should also run in Java 11. Easiest way to compile app and run tests is using CLI. Run following command in terminal window (in the directory where you have checked out source code):
+`gradlew clean test`. It will run total 18 tests (9 + 9) and print test results in CLI. It will also write an html report in *app/build/reports/tests/test/index.html*
+
+Alternative way to edit, compile and run/test app is using a Java IDE (e.g. Eclipse or IntelliJ IDEA). Import the source code in IDE as Gradle project and it will automatically download required libraries (e.g. JUnit). Run the app as JUnit Test and it will run all 18 tests.
